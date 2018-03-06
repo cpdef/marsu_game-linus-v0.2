@@ -131,7 +131,7 @@ default.cool_lava = function(pos, node)
 		{pos = pos, max_hear_distance = 16, gain = 0.25})
 end
 
-if minetest.setting_getbool("enable_lavacooling") ~= false then
+if minetest.settings:get_bool("enable_lavacooling") ~= false then
 	minetest.register_abm({
 		label = "Lava cooling",
 		nodenames = {"default:lava_source", "default:lava_flowing"},
@@ -139,9 +139,7 @@ if minetest.setting_getbool("enable_lavacooling") ~= false then
 		interval = 1,
 		chance = 2,
 		catch_up = false,
-		action = function(...)
-			default.cool_lava(...)
-		end,
+		action = default.cool_lava,
 	})
 end
 
@@ -224,9 +222,7 @@ minetest.register_abm({
 	neighbors = {"group:sand"},
 	interval = 12,
 	chance = 83,
-	action = function(...)
-		default.grow_cactus(...)
-	end
+	action = default.grow_cactus
 })
 
 minetest.register_abm({
@@ -235,9 +231,7 @@ minetest.register_abm({
 	neighbors = {"default:dirt", "default:dirt_with_grass"},
 	interval = 14,
 	chance = 71,
-	action = function(...)
-		default.grow_papyrus(...)
-	end
+	action = default.grow_papyrus
 })
 
 
